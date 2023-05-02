@@ -2,5 +2,12 @@ Checks: >
   *,
   -llvmlibc-callee-namespace,
   -google-runtime-int,
+  -hicpp-use-auto,
+  -readability-implicit-bool-conversion,
+  -readability-braces-around-statements,
+  -hicpp-braces-around-statements,
+  -google-readability-braces-around-statements,
+  -cppcoreguidelines-init-variables,
+  -cppcoreguidelines-pro-type-reinterpret-cast,
   -cppcoreguidelines-avoid-magic-numbers,
   -readability-magic-numbers
