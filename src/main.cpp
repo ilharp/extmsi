@@ -101,18 +101,6 @@ void LogAndFail(const wchar_t *messages) {
   ExitProcess(1);
 }
 
-void LogAndFail(const std::wstring &messages) {
-  std::wcerr << messages << std::endl;
-  ExitProcess(1);
-}
-
-void CheckFailure(HRESULT hr, const std::wstring &message) {
-  if (FAILED(hr)) {
-    std::wcerr << "[WinError HRESULT " << hr << "] " << message << std::endl;
-    ExitProcess(1);
-  }
-}
-
 std::unique_ptr<char[]> WideCharToUTF8(_In_ wchar_t *w) {
   int len = WideCharToMultiByte(
       CP_UTF8, WC_ERR_INVALID_CHARS, w, -1, nullptr, 0, nullptr, nullptr);
@@ -122,14 +110,4 @@ std::unique_ptr<char[]> WideCharToUTF8(_In_ wchar_t *w) {
   WideCharToMultiByte(
       CP_UTF8, WC_ERR_INVALID_CHARS, w, -1, s.get(), len, nullptr, nullptr);
   return s;
-}
-
-std::unique_ptr<wchar_t[]> UTF8ToWideChar(const char *s) {
-  int len =
-      MultiByteToWideChar(CP_UTF8, MB_ERR_INVALID_CHARS, s, -1, nullptr, 0);
-  if (!len) return nullptr;
-  std::unique_ptr<wchar_t[]> w = std::make_unique<wchar_t[]>(len + 1);
-  w[len] = 0;
-  MultiByteToWideChar(CP_UTF8, MB_ERR_INVALID_CHARS, s, -1, w.get(), len);
-  return w;
 }

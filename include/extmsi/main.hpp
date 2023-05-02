@@ -36,12 +36,6 @@ void LogAndFailWithLastError(const wchar_t *messages);
 
 void LogAndFail(const wchar_t *messages);
 
-void LogAndFail(const std::wstring &messages);
-
-void CheckFailure(HRESULT hr, const std::wstring &message);
-
 std::unique_ptr<char[]> WideCharToUTF8(wchar_t *w);
-
-std::unique_ptr<wchar_t[]> UTF8ToWideChar(const char *s);
 
 #endif /* _EXTMSI_MAIN_ */
